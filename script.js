@@ -1,17 +1,13 @@
 // let wrapper = document.getElementById("wrapper");
-
 // let title = document.getElementsByClassName("title");
-
 // let liTag = document.getElementsByTagName("li");
-
 // let wrapper = document.querySelector("#wrapper");
-
 // let liTag = document.querySelectorAll("li"); // returns a nodelist
-
 // console.log(liTag);
 
 let taskList = document.querySelector("#task-list ul");
-let addTaskForm = document.getElementById("add-task")
+let addTaskForm = document.getElementById("add-task");
+let searchInput = document.querySelector("#search-tasks input");
 
 taskList.addEventListener("click",(event)=> {
     if (event.target.textContent == "delete") {
@@ -40,4 +36,20 @@ addTaskForm.addEventListener("submit",(event)=> {
     taskList.append(liTag);
 
     addTaskForm.reset();
+})
+
+searchInput.addEventListener("keyup",(event)=> {
+    let searchText = event.target.value.toLowerCase();
+
+    let tasks = document.querySelectorAll("#task-list li");
+
+    tasks.forEach(function(task) {
+        let taskName = task.querySelector(".name").textContent.toLowerCase();
+        
+        if (taskName.includes(searchText)) {
+            task.style.display = "flex";
+        } else {
+            task.style.display = "none";
+        }
+    })
 })
