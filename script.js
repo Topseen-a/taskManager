@@ -1,13 +1,4 @@
-// let wrapper = document.getElementById("wrapper");
-// let title = document.getElementsByClassName("title");
-// let liTag = document.getElementsByTagName("li");
-// let wrapper = document.querySelector("#wrapper");
-// let liTag = document.querySelectorAll("li"); // returns a nodelist
-// console.log(liTag);
-
 let taskList = document.querySelector("#task-list ul");
-let addTaskForm = document.getElementById("add-task");
-let searchInput = document.querySelector("#search-tasks input");
 
 taskList.addEventListener("click",(event)=> {
     if (event.target.textContent == "delete") {
@@ -16,12 +7,23 @@ taskList.addEventListener("click",(event)=> {
     }
 })
 
+
+
+let addTaskForm = document.getElementById("add-task");
+
 addTaskForm.addEventListener("submit",(event)=> {
     event.preventDefault()
 
     let value = document.querySelector("#add-task input").value.trim();
 
+    if (value == "") return;
+
     let liTag = document.createElement("li");
+
+    let checkBox = document.createElement("input");
+    checkBox.type = "checkbox";
+    checkBox.classList.add("check");
+
     let firstSpanTag = document.createElement("span");
     let secondSpanTag = document.createElement("span");
 
@@ -31,12 +33,17 @@ addTaskForm.addEventListener("submit",(event)=> {
     firstSpanTag.classList.add("name");
     secondSpanTag.classList.add("delete");
 
+    liTag.appendChild(checkBox);
     liTag.appendChild(firstSpanTag);
     liTag.appendChild(secondSpanTag);
     taskList.append(liTag);
 
     addTaskForm.reset();
 })
+
+
+
+let searchInput = document.querySelector("#search-tasks input");
 
 searchInput.addEventListener("keyup",(event)=> {
     let searchText = event.target.value.toLowerCase();

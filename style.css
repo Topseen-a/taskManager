@@ -26,13 +26,13 @@ body {
 }
 
 .title {
-  color: #333;
+  color: black;
   text-align: center;
   margin-bottom: 20px;
 }
 
 #page-banner p {
-  color: #777;
+  color: black;
   margin-bottom: 10px;
 }
 
@@ -122,4 +122,3 @@ body {
 #add-task button:hover {
   background: #0056b3;
 }
-
